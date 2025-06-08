@@ -1,0 +1,319 @@
+/* Importando uma fonte do Google Fonts para um visual mais moderno */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+
+/* --- TEMA CLARO (PADRÃO) --- */
+:root {
+  --cor-primaria: #2a9d8f;
+  --cor-secundaria: #264653;
+  --cor-fundo-pagina: #f4f4f4;
+  --cor-fundo-container: #ffffff;
+  --cor-texto-principal: #333333;
+  --cor-texto-overlay: #ffffff;
+  --cor-fundo-input: #eeeeee;
+}
+
+/* --- TEMA ESCURO (DETECTADO AUTOMATICAMENTE) --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cor-primaria: #2a9d8f;
+    --cor-secundaria: #f4a261;
+    --cor-fundo-pagina: #1c1c1e;
+    --cor-fundo-container: #2c2c2e;
+    --cor-texto-principal: #f2f2f7;
+    --cor-texto-overlay: #000000;
+    --cor-fundo-input: #3a3a3c;
+  }
+}
+
+/* --- ESTILOS GERAIS --- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* CORREÇÃO: Usando variáveis para o fundo e cor do texto da página */
+  background: var(--cor-fundo-pagina);
+  color: var(--cor-texto-principal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+  color: var(--cor-texto-principal);
+}
+
+p {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 0 30px;
+}
+
+a {
+  color: var(--cor-texto-principal);
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid var(--cor-primaria);
+  background-color: var(--cor-primaria);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background-color: transparent;
+  border-color: var(--cor-texto-overlay);
+  color: var(
+    --cor-texto-overlay
+  ); /* CORREÇÃO: Garantindo que o texto do botão ghost use a cor correta */
+}
+
+form {
+  background-color: var(--cor-fundo-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+}
+
+input {
+  background-color: var(--cor-fundo-input);
+  color: var(
+    --cor-texto-principal
+  ); /* CORREÇÃO: Texto do input precisa mudar de cor */
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+/* O container que segura o input e o ícone */
+.input-wrapper {
+  position: relative; /* Essencial para posicionar o ícone dentro dele */
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Ajuste no input para dar espaço ao ícone */
+.input-wrapper input {
+  width: 100%; /* Garante que o input preencha o wrapper */
+  /* Adiciona um espaço à direita para o ícone não ficar sobre o texto digitado */
+  padding-right: 40px;
+}
+
+/* O ícone dentro do input */
+.input-wrapper .icon {
+  position: absolute; /* Posiciona o ícone sobre o input */
+  right: 15px; /* Distância da borda direita */
+  color: #999;
+  cursor: pointer; /* Muda o cursor para uma "mãozinha" */
+}
+
+/* O balão de dica (tooltip) */
+.input-wrapper .tooltip {
+  position: absolute;
+  /* LÓGICA CORRIGIDA: Posiciona acima do campo, sem cobrir o anterior */
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 220px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 200; /* Aumentamos o z-index para garantir */
+}
+
+/* A pequena seta do balão de diálogo */
+.input-wrapper .tooltip::after {
+  content: "";
+  position: absolute;
+  /* CORREÇÃO: Posiciona a seta na parte de baixo do tooltip */
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  /* CORREÇÃO: Inverte a mágica do triângulo para apontar para baixo */
+  border-color: #333 transparent transparent transparent;
+}
+
+/* CORREÇÃO PRINCIPAL: O efeito de aparecer ao passar o mouse SOMENTE no ÍCONE */
+.input-wrapper .icon:hover ~ .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- ESTRUTURA E ANIMAÇÃO DO CONTAINER --- */
+.container {
+  background-color: var(--cor-fundo-container);
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.overlay {
+  background: var(--cor-secundaria);
+  color: var(--cor-texto-overlay);
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+/* Animações ativadas pelo JavaScript */
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* --- REGRAS DE RESPONSIVIDADE (DEVEM VIR POR ÚLTIMO) --- */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .form-container {
+    width: 100%;
+    position: relative; /* CORREÇÃO: Garante que um formulário fique abaixo do outro */
+    padding: 0 25px; /* Adiciona um respiro nas laterais */
+  }
+
+  .sign-up-container {
+    /* CORREÇÃO: Garante que o form de cadastro não fique um sobre o outro */
+    top: 20px;
+  }
+
+  .overlay-container {
+    /* CORREÇÃO: A forma correta de esconder o overlay em telas pequenas */
+    display: none;
+  }
+}
