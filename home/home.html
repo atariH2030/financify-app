@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Painel - Financify</title>
+    <link rel="stylesheet" href="./home.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <header>
+        <h1>Bem-vindo(a) ao Financify!</h1>
+        <p>Você está logado como: <span id="userEmail">carregando...</span></p>
+      </header>
+
+      <main>
+        <h2>Seu Painel Financeiro</h2>
+        <p>Em breve, aqui você poderá ver seus gráficos e relatórios.</p>
+      </main>
+
+      <footer>
+        <button id="logoutBtn">Sair</button>
+      </footer>
+    </div>
+
+    <script src="../login/firebase-config.js"></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js"
+    ></script>
+    <script type="module" src="./home.js"></script>
+  </body>
+</html>

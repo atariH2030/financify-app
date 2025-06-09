@@ -93,6 +93,11 @@ button.ghost {
   ); /* CORREÇÃO: Garantindo que o texto do botão ghost use a cor correta */
 }
 
+/* Adiciona um espaço extra acima dos botões principais do formulário */
+.sign-up-container button[type="submit"] {
+  margin-top: 20px;
+}
+
 form {
   background-color: var(--cor-fundo-container);
   display: flex;
@@ -115,19 +120,29 @@ input {
   width: 100%;
 }
 
+/* --- ESTILOS PARA O INPUT COM ÍCONE E TOOLTIP --- */
+
 /* O container que segura o input e o ícone */
 .input-wrapper {
   position: relative; /* Essencial para posicionar o ícone dentro dele */
   width: 100%;
-  display: flex;
-  align-items: center;
 }
 
-/* Ajuste no input para dar espaço ao ícone */
+/* CORREÇÃO: Removemos o display:flex para o input ocupar 100% */
 .input-wrapper input {
-  width: 100%; /* Garante que o input preencha o wrapper */
+  width: 100%;
   /* Adiciona um espaço à direita para o ícone não ficar sobre o texto digitado */
-  padding-right: 40px;
+  padding-right: 45px;
+}
+
+/* O ícone de ver/esconder senha */
+.toggle-password {
+  position: absolute; /* CORREÇÃO: Faz o ícone 'flutuar' */
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%); /* Alinha verticalmente */
+  cursor: pointer;
+  color: #999;
 }
 
 /* O ícone dentro do input */
@@ -288,6 +303,47 @@ input {
     opacity: 1;
     z-index: 5;
   }
+}
+
+/* --- ESTILOS PARA LOGIN SOCIAL --- */
+.social-container {
+  margin: 10px 0;
+}
+
+.social-button {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 100%; /* Ocupa toda a largura */
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.social-button:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.social-button i {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+/* Cor específica para o botão do Google */
+.social-button.google i {
+  color: #db4437;
+}
+
+.divider {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 10px;
 }
 
 /* --- REGRAS DE RESPONSIVIDADE (DEVEM VIR POR ÚLTIMO) --- */

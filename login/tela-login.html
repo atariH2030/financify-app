@@ -3,13 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Financify | Login</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-
     <link rel="stylesheet" href="./tela-login.css" />
   </head>
   <body>
@@ -17,26 +15,52 @@
       <div class="form-container sign-up-container">
         <form action="#">
           <h1>Crie sua Conta</h1>
+          <div class="social-container">
+            <button
+              type="button"
+              class="social-button google"
+              id="googleSignUpBtn"
+            >
+              <i class="fab fa-google"></i>Continuar com Google
+            </button>
+          </div>
+          <span class="divider">ou use seu e-mail para cadastrar</span>
           <input type="text" placeholder="Nome" />
           <input type="email" placeholder="Email" />
           <div class="input-wrapper">
-            <input type="password" placeholder="Senha" />
-            <i class="fa-solid fa-circle-info icon"></i>
-            <span class="tooltip"
-              >Use 8+ caracteres com letras, números e símbolos.</span
-            >
+            <input type="password" placeholder="Senha" id="signUpPassword" />
+            <i
+              class="fa-solid fa-eye-slash toggle-password"
+              data-target="signUpPassword"
+            ></i>
           </div>
-          <button>Criar Conta</button>
+          <button type="submit">Criar Conta</button>
         </form>
       </div>
 
       <div class="form-container sign-in-container">
         <form action="#">
           <h1>Entrar</h1>
+          <div class="social-container">
+            <button
+              type="button"
+              class="social-button google"
+              id="googleSignInBtn"
+            >
+              <i class="fab fa-google"></i>Continuar com Google
+            </button>
+          </div>
+          <span class="divider">ou use sua conta</span>
           <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Senha" />
+          <div class="input-wrapper">
+            <input type="password" placeholder="Senha" id="signInPassword" />
+            <i
+              class="fa-solid fa-eye-slash toggle-password"
+              data-target="signInPassword"
+            ></i>
+          </div>
           <a href="#">Esqueceu sua senha?</a>
-          <button>Entrar</button>
+          <button type="submit">Entrar</button>
         </form>
       </div>
 
@@ -66,12 +90,18 @@
 
     <script
       type="module"
-      src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
+      src="https://www.gstatic.com/firebasejs/11.9.0/firebase-app.js"
     ></script>
     <script
       type="module"
-      src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
+      src="https://www.gstatic.com/firebasejs/11.9.0/firebase-auth.js"
     ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/11.9.0/firebase-firestore.js"
+    ></script>
+
+    <script type="module" src="./tela-login.js"></script>
 
     <script type="module" src="./tela-login.js"></script>
   </body>
